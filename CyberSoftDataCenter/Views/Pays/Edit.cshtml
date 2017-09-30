@@ -1,0 +1,37 @@
+@model CyberSoftDataCenter.Models.Pays
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h3>Edition</h3>
+<hr />
+
+<form asp-action="Edit">
+    <div class="form-horizontal">
+     
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="PaysID" />
+        <div class="form-group">
+            <label asp-for="Nom" class="col-md-2 control-label"></label>
+           <div class="col-md-5">
+                <input asp-for="Nom" class="form-control" />
+                <span asp-validation-for="Nom" class="text-danger"></span>
+            </div>
+        </div>
+        <hr />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+
+                <a class="btn btn-default" asp-action="Index">Fermer</a>
+                <input type="submit" value="Sauver" class="btn btn-info" />
+            </div>
+        </div>
+    </div>
+</form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

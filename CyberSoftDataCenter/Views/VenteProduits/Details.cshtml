@@ -1,0 +1,48 @@
+@model CyberSoftDataCenter.Models.VenteProduits
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>VenteProduits</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOperation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateOperation)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Montant)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Montant)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Remise)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Remise)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Users)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Users)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RefVente)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RefVente)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.VenteProduitsID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

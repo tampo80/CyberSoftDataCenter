@@ -1,0 +1,54 @@
+@model CyberSoftDataCenter.Models.Pubs
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Pubs</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Client)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Client)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Format)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Format)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreaton)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateCreaton)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FinContrat)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FinContrat)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Url)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Url)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Statut)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Statut)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.PubsId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

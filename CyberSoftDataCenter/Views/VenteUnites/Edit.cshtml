@@ -1,0 +1,85 @@
+@model CyberSoftDataCenter.Models.VenteUnites
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<form asp-action="Edit">
+    <div class="form-horizontal">
+        <h4>VenteUnites</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="VenteUnitesID" />
+        <div class="form-group">
+            <label asp-for="HeureVente" class="col-md-2 control-label"></label>
+           <div class="col-md-5">
+                <input asp-for="HeureVente" class="form-control" />
+                <span asp-validation-for="HeureVente" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="DateVente" class="col-md-2 control-label"></label>
+           <div class="col-md-5">
+                <input asp-for="DateVente" class="form-control" />
+                <span asp-validation-for="DateVente" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Clients" class="col-md-2 control-label"></label>
+           <div class="col-md-5">
+                <input asp-for="Clients" class="form-control" />
+                <span asp-validation-for="Clients" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="TypeTarification" class="col-md-2 control-label"></label>
+           <div class="col-md-5">
+                <input asp-for="TypeTarification" class="form-control" />
+                <span asp-validation-for="TypeTarification" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Users" class="col-md-2 control-label"></label>
+           <div class="col-md-5">
+                <input asp-for="Users" class="form-control" />
+                <span asp-validation-for="Users" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="MontantAchat" class="col-md-2 control-label"></label>
+           <div class="col-md-5">
+                <input asp-for="MontantAchat" class="form-control" />
+                <span asp-validation-for="MontantAchat" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="HeuresAchete" class="col-md-2 control-label"></label>
+           <div class="col-md-5">
+                <input asp-for="HeuresAchete" class="form-control" />
+                <span asp-validation-for="HeuresAchete" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CybersCentersID" class="control-label col-md-2"></label>
+           <div class="col-md-5">
+                <select asp-for="CybersCentersID" class="form-control" asp-items="ViewBag.CybersCentersID"></select>
+                <span asp-validation-for="CybersCentersID" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

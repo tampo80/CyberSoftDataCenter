@@ -1,0 +1,77 @@
+@model CyberSoftDataCenter.Models.Users
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Users</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="UsersID" />
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PasswordSalt)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PasswordSalt)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FuleName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FuleName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tel)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tel)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Isconnected)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Isconnected)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreationDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastContedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastContedDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActif)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsActif)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>

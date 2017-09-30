@@ -1,0 +1,35 @@
+@model CyberSoftDataCenter.Models.Pays
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h3>Nouveau pays</h3>
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Nom" class="col-md-2 control-label"></label>
+           <div class="col-md-5">
+                <input asp-for="Nom" class="form-control" />
+                <span asp-validation-for="Nom" class="text-danger"></span>
+            </div>
+        </div>
+        <hr />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+              
+                <a class="btn btn-default" asp-action="Index">Fermer</a>
+                <input type="submit" value="Cr&eacute;er" class="btn btn-info" />
+            </div>
+        </div>
+    </div>
+</form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

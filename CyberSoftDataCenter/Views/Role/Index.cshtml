@@ -1,0 +1,74 @@
+@model IEnumerable<CyberSoftDataCenter.Models.AccountViewModels.RolesListViewModel>
+<script type="text/javascript">
+    var url = '/Role/DeleteRole';
+</script>
+
+
+                      @{
+    ViewData["Title"] = "Index";
+                      }
+
+                      <h3>Liste des R&ocirc;les</h3>
+
+
+
+                      <hr />
+                      <p>
+                          <a asp-action="AddEditRole" class="btn btn-primary">Cr&eacute;er un nouveau</a>
+                      </p>
+                      <table class="table table-striped table-hover">
+                          <thead>
+                              <tr>
+                                  <th>
+                                      @Html.DisplayNameFor(model => model.RoleName)
+                                  </th>
+                                  <th>
+                                      @Html.DisplayNameFor(model => model.Description)
+                                  </th>
+                                  <th>
+                                      @Html.DisplayNameFor(model => model.NumberOfUsers)
+                                  </th>
+                                  <th width="60px"></th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              @foreach (var item in Model) {
+                                  <tr>
+                                      <td>
+                                          @Html.DisplayFor(modelItem => item.RoleName)
+                                      </td>
+                                      <td>
+                                          @Html.DisplayFor(modelItem => item.Description)
+                                      </td>
+                                      <td>
+                                          @Html.DisplayFor(modelItem => item.NumberOfUsers)
+                                      </td>
+                                      <td>
+                                          <a asp-action="AddEditRole" asp-route-id="@item.Id"><span class="glyphicon glyphicon-edit text-info"></span></a> |
+                                          @*     <a asp-action="Details" asp-route-id="@item.PaysID">Details</a> |*@
+                                          <a class="delete-prompt" href="javascript:void(0)" id="@item.Id"><span class="glyphicon glyphicon-trash text-danger"> </span></a>
+
+                                      </td>
+                                  </tr>
+}
+                          </tbody>
+                      </table>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header alert alert-danger">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Avertissement</h4>
+            </div>
+            <div class="modal-body">
+                <p class="success-message">Suppimer l'utilisateur  ? </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success delete-confirm">Suppimer</button>
+                <button class="btn btn-default" data-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>

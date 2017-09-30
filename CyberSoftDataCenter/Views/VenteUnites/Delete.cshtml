@@ -1,0 +1,71 @@
+@model CyberSoftDataCenter.Models.VenteUnites
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>VenteUnites</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="VenteUnitesID" />
+        <dt>
+            @Html.DisplayNameFor(model => model.HeureVente)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HeureVente)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateVente)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateVente)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Clients)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Clients)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeTarification)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TypeTarification)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Users)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Users)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MontantAchat)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MontantAchat)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HeuresAchete)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HeuresAchete)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CybersCenters)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CybersCenters.CybersCentersID)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>

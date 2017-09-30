@@ -1,0 +1,39 @@
+@model CyberSoftDataCenter.Models.Roles
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h3>Suppression</h3>
+
+<h5>Etes vous sure de vouloir supprimer cette entr&eacute;e?</h5>
+
+<div>
+    <h4>R&ocirc;le</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="RolesID" />
+        <dt>
+            R&ocirc;le
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RoleName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <div class="form-actions no-color">
+                <a class="btn btn-default" asp-action="Index">Fermer</a>
+                <input type="submit" value="Supprimer" class="btn btn-info" />
+
+            </div>
+        </div>
+    </form>
+</div>

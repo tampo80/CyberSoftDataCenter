@@ -1,0 +1,78 @@
+@model ReflectionIT.Mvc.Paging.PagingList<CyberSoftDataCenter.Models.VenteProduits>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.Mvc.Paging
+
+
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Les ventes</h2>
+
+<nav aria-label="Suppliers navigation example">
+    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+</nav>
+<form method="get" class="form-inline">
+    <input name="filter" class="form-control" placeholder="Recherche"
+           value="@Model.RouteValue["Filter"]" />
+    <button type="submit" class="btn btn-info">
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Recherche
+    </button>
+</form>
+<hr />
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+           
+                <th>
+                    Date op&eacute;ration
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Montant)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Remise)
+                </th>
+                <th>
+                   Vendeur
+                </th>
+                <th>
+                    Cyber Centre
+                </th>
+            <th width="30px"></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <b> @item.DateOperation.ToString("dd/MM/yyyy (HH:mm)")</b>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Montant) F
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Remise) F
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Users)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CybersCenters.Nom)
+            </td>
+            <td>
+                <a asp-action="DetailsProduits" asp-route-id="@item.VenteProduitsID"><span class="glyphicon glyphicon-eye-open text-info"></span></a> 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<hr />
+<nav aria-label="Suppliers navigation example">
+    <vc:pager paging-list="@Model" />
+</nav>

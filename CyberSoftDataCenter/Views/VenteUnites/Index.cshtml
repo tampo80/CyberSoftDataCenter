@@ -1,0 +1,99 @@
+@model ReflectionIT.Mvc.Paging.PagingList<CyberSoftDataCenter.Models.VenteUnites>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.Mvc.Paging
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Les recettes internets</h2>
+<nav aria-label="Suppliers navigation example">
+    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+</nav>
+<form method="get" class="form-inline">
+    <input name="filter" class="form-control" placeholder="Recherche"
+           value="@Model.RouteValue["Filter"]" />
+    <button type="submit" class="btn btn-info">
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Recherche
+    </button>
+</form>
+<hr />
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.HeureVente)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateVente)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Clients)
+                </th>
+                @*<th>
+                    @Html.DisplayNameFor(model => model.TypeTarification)
+                </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.Users)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MontantAchat)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HeuresAchete)
+                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CybersCenters)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td class="text-primary">
+                <b> @item.HeureVente.ToString("HH:mm")</b>
+            </td>
+            <td>
+               <b> @item.DateVente.ToString("dd/MM/yyyy")</b>
+               @* @Html.DisplayFor(modelItem => item.DateVente)*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Clients)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.TypeTarification)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Users)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MontantAchat) F
+            </td>
+            <td>
+                @{ 
+                    TimeSpan ts = TimeSpan.FromMinutes(item.HeuresAchete);
+                   
+                }
+                @ts.ToString(@"hh\:mm")
+               @* @Html.DisplayFor(modelItem => item.HeuresAchete)*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CybersCenters.Nom)
+            </td>
+            <td>
+                @*<a asp-action="Edit" asp-route-id="@item.VenteUnitesID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.VenteUnitesID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.VenteUnitesID">Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<hr />
+<nav aria-label="Suppliers navigation example">
+    <vc:pager paging-list="@Model" />
+</nav>

@@ -1,0 +1,81 @@
+@model IEnumerable<CyberSoftDataCenter.Models.ViewModels.ParCyberCenterVm>
+
+@{
+    ViewData["Title"] = "ParCyberCentreProduit";
+}
+
+<h2>Recettes des ventes par cyber centres</h2>
+
+                      <hr />
+                      <form class="form-inline" method="get" asp-action="ParCyberCentreProduit">
+                          <label class="control-label">Date d&eacute;but</label>
+                          <div class="input-group date" id="DateDebutc" name="DateDebutc">
+                              <input type="text" id="DateDebut" name="DateDebut" class="form-control" value="@ViewBag.DateDebut">
+                              <span class="input-group-addon"><a href="#"><i class="glyphicon glyphicon-th "></i></a></span>
+                          </div>
+                          <label class="control-label">Date Fin</label>
+
+                          <div class="input-group date" id="DateFinc" name="DateFinc">
+                              <input type="text" class="form-control" id="DateFin" name="DateFin" value="@ViewBag.DateFin">
+                              <span class="input-group-addon"><a href="#"><i class="glyphicon glyphicon-th "></i></a></span>
+                          </div>
+                          <button type="submit" class="btn btn-info">Rechercher</button>
+                      </form>
+                      <hr />
+                      <table class="table table-condensed table-hover table-striped">
+                          <thead>
+                              <tr>
+                                  <th>
+                                      @Html.DisplayNameFor(model => model.CyberCentres)
+                                  </th>
+                                  <th>
+                                      @Html.DisplayNameFor(model => model.Solde)
+                                  </th>
+                                  <th>
+                                      @Html.DisplayNameFor(model => model.Taux)
+                                  </th>
+                                  <th></th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              @foreach (var item in Model)
+                              {
+                                  <tr>
+                                      <td>
+                                          @Html.DisplayFor(modelItem => item.CyberCentres)
+                                      </td>
+                                      <td>
+                                          @Html.DisplayFor(modelItem => item.Solde)
+                                      </td>
+                                      <td>
+                                          @Html.DisplayFor(modelItem => item.Taux)
+                                      </td>
+                                      <td>
+                                          <div class="progress">
+                                              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow=@item.Taux aria-valuemin="0" aria-valuemax="100" style="width:@item.Taux%">
+                                                  @item.Taux%
+                                              </div>
+                                          </div>
+                                      </td>
+                                  </tr>
+                              }
+                          </tbody>
+                      </table>
+                      @section Scripts
+{
+                          <script>
+    $('#DateDebutc').datepicker({
+        language: "fr",
+        autoclose: true
+    });
+
+
+    $('#DateFinc').datepicker({
+        language: "fr",
+        autoclose: true
+    });
+
+
+                          </script>
+
+                      }

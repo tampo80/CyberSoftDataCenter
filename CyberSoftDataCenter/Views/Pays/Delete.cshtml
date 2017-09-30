@@ -1,0 +1,30 @@
+@model CyberSoftDataCenter.Models.Pays
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h3>Suppression</h3>
+
+<h5>Etes vous sure de vouloir supprimer cette entr&eacute;e?</h5>
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="PaysID" />
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <a class="btn btn-default" asp-action="Index">Fermer</a>
+            <input type="submit" value="Delete" class="btn btn-info" />
+            
+        </div>
+    </form>
+</div>

@@ -1,0 +1,39 @@
+@model IEnumerable<CyberSoftDataCenter.Models.BkpDataBases>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3>Journal des BKP</h3>
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table class="table table-hover table-striped ">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CyberCenterID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateBKP)
+                </th>
+            <th width="30px"</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CyberCenterID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateBKP)
+            </td>
+            <td>
+               
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

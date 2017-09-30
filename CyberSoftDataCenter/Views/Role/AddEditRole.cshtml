@@ -1,0 +1,45 @@
+@model CyberSoftDataCenter.Models.AccountViewModels.RoleViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h3>@ViewBag.Titre</h3>
+
+
+
+<form asp-action="AddEditRole">
+    <div class="form-horizontal">
+        <input type="hidden" asp-for="Id" />
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+       
+        <div class="form-group">
+            <label asp-for="RoleName" class="col-md-2 control-label"></label>
+            <div class="col-md-5">
+                <input asp-for="RoleName" class="form-control" />
+                <span asp-validation-for="RoleName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description" class="col-md-2 control-label"></label>
+            <div class="col-md-5">
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+        </div>
+        <hr />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-5">
+
+                <a class="btn btn-default" asp-action="Index">Fermer</a>
+                <input type="submit" value="@ViewBag.button" class="btn btn-info" />
+            </div>
+        </div>
+    </div>
+</form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
