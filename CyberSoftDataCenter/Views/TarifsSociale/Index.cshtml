@@ -1,0 +1,50 @@
+@model IEnumerable<CyberSoftDataCenter.Models.Tarifs>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                  Nom 
+                </th>
+                <th>
+                  Date Validit&eacute;
+                </th>
+                <th>
+                  Active
+                </th>
+         
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TarificationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EpireDate)
+              
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Isdefault)
+            </td>
+           
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TarifsId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TarifsId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TarifsId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

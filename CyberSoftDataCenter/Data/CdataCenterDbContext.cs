@@ -34,7 +34,10 @@ namespace CyberSoftDataCenter.Data
         public DbSet<DetaillesVentes> DetaillesVentes { get; set; }
         public DbSet<BkpDataBases> BkpDataBases { get; set; }
         public DbSet<Pubs> Pubs { get; set; }
-
+        public DbSet<TypeCybers> TypeCybers { get; set; }
+        public DbSet<Tarifs> Tarifs { get; set; }
+        public DbSet<TypeTarifications> TypeTarifications { get; set; }
+        public DbSet<DetailTarifs> DetailTarifs { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
@@ -65,6 +68,16 @@ namespace CyberSoftDataCenter.Data
             modelBuilder.Entity<DetaillesVentes>().ToTable("DetaillesVentes");
             modelBuilder.Entity<BkpDataBases>().ToTable("BkpDataBases");
             modelBuilder.Entity<Pubs>().ToTable("Pubs");
+
+            modelBuilder.Entity<Tarifs>().ToTable("Tarifs");
+
+
+            modelBuilder.Entity<DetailTarifs>().ToTable("DetailTarifs");
+            modelBuilder.Entity<TypeCybers>().ToTable("TypeCybers");
+             
+            modelBuilder.Entity<TypeTarifications>().ToTable("TypeTarifications");
+
+
 
 
         }

@@ -1,0 +1,47 @@
+@model CyberSoftDataCenter.Models.Tarifs
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Tarifs</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="TarifsId" />
+        <dt>
+            @Html.DisplayNameFor(model => model.EpireDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EpireDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TarificationName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TarificationName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Isdefault)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Isdefault)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeCybers)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TypeCybers.TypeCybersId)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>

@@ -49,6 +49,8 @@ namespace CyberSoftDataCenter.Controllers
                 user.FulleName = obj.FulleName;
                 user.Tel = obj.Tel;
 
+                
+
                 IdentityResult result = userManager.CreateAsync
                 (user, obj.Password).Result;
 
@@ -76,6 +78,41 @@ namespace CyberSoftDataCenter.Controllers
             }
             return View(obj);
         }
+
+
+
+        [HttpPost]
+       
+        public async Task<IActionResult> Reinit(string Id,string password)
+        {
+            DCUsers user = userManager.Users.FirstOrDefault(e => e.Id == Id);
+            if (user!=null)
+            {
+                string token =await userManager.GeneratePasswordResetTokenAsync(user);
+                try
+                {
+                    IdentityResult Result = await userManager.ResetPasswordAsync(user, token, password);
+                    if (Result.Succeeded)
+                    {
+                        return Json(true);
+                    }
+                    else
+                    {
+                        return Json(false);
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    return Json(ex.Message);
+                }
+               
+            }
+
+
+            return View();
+        }
+
         public IActionResult Login()
         {
             return View();

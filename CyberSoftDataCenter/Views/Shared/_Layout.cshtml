@@ -38,7 +38,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">CyberSoftDataCenter</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"></a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -69,6 +69,16 @@
                     </ul>
                    
                     </li>*@
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" asp-area="" asp-controller="Home" asp-action="About">Tarifiactions<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a asp-area="" asp-controller="TarifsSociale" asp-action="Index">Cybers Sociale</a></li>
+                            <li><a asp-area="" asp-controller="Tarifs" asp-action="Index">Cybers Classiques</a></li>
+                         
+
+                        </ul>
+
+                    </li>
                     <li><a asp-area="" asp-controller="Pubs" asp-action="Index">La pub</a></li>
                     <li><a asp-area="" asp-controller="BkpDataBases" asp-action="Index">Data center</a></li>
                     <li class="dropdown">
@@ -133,7 +143,7 @@
                 crossorigin="anonymous"
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
         </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
         <script src="~/lib/simplePagination.js/jquery.simplePagination.js" asp-append-version="true"></script>
         <script src="~/js/Pager.js" asp-append-version="true"></script>
         <script src="~/lib/bootstrap-datepicker/js/bootstrap-datepicker.min.js" asp-append-version="true"></script>

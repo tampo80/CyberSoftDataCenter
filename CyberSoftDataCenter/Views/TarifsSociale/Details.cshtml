@@ -1,0 +1,42 @@
+@model CyberSoftDataCenter.Models.Tarifs
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tarifs</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EpireDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EpireDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TarificationName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TarificationName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Isdefault)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Isdefault)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeCybers)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TypeCybers.TypeCybersId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.TarifsId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

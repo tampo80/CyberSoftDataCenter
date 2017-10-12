@@ -28,42 +28,47 @@ namespace CyberSoftDataCenter.Controllers
         {
             var CybersCentres = await _context.CybersCenters.ToListAsync();
 
+            var FirstOperation = await _context.VenteUnites.OrderBy(e => e.DateVente).FirstOrDefaultAsync();
+
+            DateTime FirtDate = FirstOperation == null ? DateTime.Now : FirstOperation.DateVente;
            
             List<ParCyberCenterVm> data = new List<ParCyberCenterVm>();
-            DateTime DtDebut = DateDebut == null ? DateTime.Now.AddDays(-1): Convert.ToDateTime(Helper.DateConverter.ConvertDate(DateDebut));
+            DateTime DtDebut = DateDebut == null ? FirtDate : Convert.ToDateTime(Helper.DateConverter.ConvertDate(DateDebut));
 
             DateTime DtFin =DateFin==null?DateTime.Now: Convert.ToDateTime(Helper.DateConverter.ConvertDate(DateFin));;
 
-            double SoldeTotal = _context.VenteUnites.Where(e => (e.DateVente >= DtDebut && e.DateVente <= DtFin)).Sum(e => e.MontantAchat);
+            double SoldeTotal = _context.VenteUnites.Where(e => (e.DateVente >= DtDebut.AddDays(-1) && e.DateVente <= DtFin)).Sum(e => e.MontantAchat);
             int I = 0;
             foreach (var item in CybersCentres)
             { I++;
                 data.Add(new ParCyberCenterVm
                 {
                     CyberCentres = item.Nom,
-                    Solde = _context.VenteUnites.Where(e => (e.DateVente >= DtDebut && e.DateVente <= DtFin) && e.CybersCenters.Nom == item.Nom).Sum(e => e.MontantAchat),
+                    Solde = _context.VenteUnites.Where(e => (e.DateVente >= DtDebut.AddDays(-1) && e.DateVente <= DtFin) && e.CybersCenters.Nom == item.Nom).Sum(e => e.MontantAchat),
                     Id = I,
-                    Taux = SoldeTotal == 0 ? 0 : Math.Round((_context.VenteUnites.Where(e => (e.DateVente >= DtDebut && e.DateVente <= DtFin) && e.CybersCenters.Nom == item.Nom).Sum(e => e.MontantAchat)/ SoldeTotal)*100,2)
+                    Taux = SoldeTotal == 0 ? 0 : Math.Round((_context.VenteUnites.Where(e => (e.DateVente >= DtDebut.AddDays(-1) && e.DateVente <= DtFin) && e.CybersCenters.Nom == item.Nom).Sum(e => e.MontantAchat)/ SoldeTotal)*100,2)
 
                 });
             }
-            ViewBag.DateDebut = DateDebut;
-            ViewBag.DateFin = DateFin;
-           // var cdataCenterDbContext = _context.CybersCenters.Include(c => c.Villes);
+            ViewBag.DateDebut = DtDebut.ToString("dd/MM/yyyy");
+            ViewBag.DateFin = DtFin.ToString("dd/MM/yyyy");
+            // var cdataCenterDbContext = _context.CybersCenters.Include(c => c.Villes);
             return View( data);
         }
 
         public async Task<IActionResult> ParVillesUnite(string DateDebut, string DateFin)
         {
             var Villes = await _context.Villes.ToListAsync();
+            var FirstOperation = await _context.VenteUnites.OrderBy(e => e.DateVente).FirstOrDefaultAsync();
 
+            DateTime FirtDate = FirstOperation == null ? DateTime.Now : FirstOperation.DateVente;
 
             List<ParVillesVm> data = new List<ParVillesVm>();
-            DateTime DtDebut = DateDebut == null ? DateTime.Now.AddDays(-1) : Convert.ToDateTime(Helper.DateConverter.ConvertDate(DateDebut));
+            DateTime DtDebut = DateDebut == null ?FirtDate : Convert.ToDateTime(Helper.DateConverter.ConvertDate(DateDebut));
 
             DateTime DtFin = DateFin == null ? DateTime.Now : Convert.ToDateTime(Helper.DateConverter.ConvertDate(DateFin));;
 
-            double SoldeTotal = _context.VenteUnites.Where(e => (e.DateVente >= DtDebut && e.DateVente <= DtFin)).Sum(e => e.MontantAchat);
+            double SoldeTotal = _context.VenteUnites.Where(e => (e.DateVente >= DtDebut.AddDays(-1) && e.DateVente <= DtFin)).Sum(e => e.MontantAchat);
             int I = 0;
             foreach (var item in Villes)
             {
@@ -71,28 +76,30 @@ namespace CyberSoftDataCenter.Controllers
                 data.Add(new ParVillesVm
                 {
                     Ville = item.Nom,
-                    Solde = _context.VenteUnites.Where(e => (e.DateVente >= DtDebut && e.DateVente <= DtFin) && e.CybersCenters.Villes.Nom == item.Nom).Sum(e => e.MontantAchat),
+                    Solde = _context.VenteUnites.Where(e => (e.DateVente >= DtDebut.AddDays(-1) && e.DateVente <= DtFin) && e.CybersCenters.Villes.Nom == item.Nom).Sum(e => e.MontantAchat),
                     Id = I,
-                    Taux = SoldeTotal == 0 ? 0 : Math.Round((_context.VenteUnites.Where(e => (e.DateVente >= DtDebut && e.DateVente <= DtFin) && e.CybersCenters.Villes.Nom == item.Nom).Sum(e => e.MontantAchat) / SoldeTotal) * 100, 2)
+                    Taux = SoldeTotal == 0 ? 0 : Math.Round((_context.VenteUnites.Where(e => (e.DateVente >= DtDebut.AddDays(-1) && e.DateVente <= DtFin) && e.CybersCenters.Villes.Nom == item.Nom).Sum(e => e.MontantAchat) / SoldeTotal) * 100, 2)
 
                 });
             }
-            ViewBag.DateDebut = DateDebut;
-            ViewBag.DateFin = DateFin;
+            ViewBag.DateDebut = DtDebut.ToString("dd/MM/yyyy");
+            ViewBag.DateFin = DtFin.ToString("dd/MM/yyyy");
             // var cdataCenterDbContext = _context.CybersCenters.Include(c => c.Villes);
             return View(data);
         }
         public async Task<IActionResult> ParCyberCentreProduit(string DateDebut, string DateFin)
         {
             var CybersCentres = await _context.CybersCenters.ToListAsync();
+            var FirstOperation = await _context.VenteProduits.OrderBy(e => e.DateOperation).FirstOrDefaultAsync();
 
+            DateTime FirtDate = FirstOperation == null ? DateTime.Now : FirstOperation.DateOperation;
 
             List<ParCyberCenterVm> data = new List<ParCyberCenterVm>();
-            DateTime DtDebut = DateDebut == null ? DateTime.Now.AddDays(-1) : Convert.ToDateTime(Helper.DateConverter.ConvertDate(DateDebut));
+            DateTime DtDebut = DateDebut == null ? FirtDate : Convert.ToDateTime(Helper.DateConverter.ConvertDate(DateDebut));
 
             DateTime DtFin = DateFin == null ? DateTime.Now : Convert.ToDateTime(Helper.DateConverter.ConvertDate(DateFin));
 
-            double SoldeTotal = _context.VenteProduits.Where(e => (e.DateOperation >= DtDebut && e.DateOperation <= DtFin)).Sum(e =>Convert.ToDouble(e.Montant));
+            double SoldeTotal = _context.VenteProduits.Where(e => (e.DateOperation >= DtDebut.AddDays(-1) && e.DateOperation <= DtFin)).Sum(e =>Convert.ToDouble(e.Montant));
             int I = 0;
             foreach (var item in CybersCentres)
             {
@@ -100,14 +107,14 @@ namespace CyberSoftDataCenter.Controllers
                 data.Add(new ParCyberCenterVm
                 {
                     CyberCentres = item.Nom,
-                    Solde = _context.VenteProduits.Where(e => (e.DateOperation >= DtDebut && e.DateOperation <= DtFin) && e.CybersCenters.Nom == item.Nom).Sum(e => Convert.ToDouble(e.Montant)),
+                    Solde = _context.VenteProduits.Where(e => (e.DateOperation >= DtDebut.AddDays(-1) && e.DateOperation <= DtFin) && e.CybersCenters.Nom == item.Nom).Sum(e => Convert.ToDouble(e.Montant)),
                     Id = I,
-                    Taux = SoldeTotal == 0 ? 0 : Math.Round((_context.VenteProduits.Where(e => (e.DateOperation >= DtDebut && e.DateOperation <= DtFin) && e.CybersCenters.Nom == item.Nom).Sum(e => Convert.ToDouble(e.Montant)) / SoldeTotal) * 100, 2)
+                    Taux = SoldeTotal == 0 ? 0 : Math.Round((_context.VenteProduits.Where(e => (e.DateOperation >= DtDebut.AddDays(-1) && e.DateOperation <= DtFin) && e.CybersCenters.Nom == item.Nom).Sum(e => Convert.ToDouble(e.Montant)) / SoldeTotal) * 100, 2)
 
                 });
             }
-            ViewBag.DateDebut = DateDebut;
-            ViewBag.DateFin = DateFin;
+            ViewBag.DateDebut = DtDebut.ToString("dd/MM/yyyy");
+            ViewBag.DateFin = DtFin.ToString("dd/MM/yyyy");
             // var cdataCenterDbContext = _context.CybersCenters.Include(c => c.Villes);
             return View(data);
         }
@@ -116,13 +123,17 @@ namespace CyberSoftDataCenter.Controllers
         {
             var Villes = await _context.Villes.ToListAsync();
 
+            var FirstOperation = await _context.VenteProduits.OrderBy(e => e.DateOperation).FirstOrDefaultAsync();
+
+            DateTime FirtDate = FirstOperation == null ? DateTime.Now : FirstOperation.DateOperation;
+
 
             List<ParVillesVm> data = new List<ParVillesVm>();
-            DateTime DtDebut = DateDebut == null ? DateTime.Now.AddDays(-1) : Convert.ToDateTime(Helper.DateConverter.ConvertDate(DateDebut));
+            DateTime DtDebut = DateDebut == null ? FirtDate : Convert.ToDateTime(Helper.DateConverter.ConvertDate(DateDebut));
 
             DateTime DtFin = DateFin == null ? DateTime.Now : Convert.ToDateTime(Helper.DateConverter.ConvertDate(DateFin));;
 
-            double SoldeTotal = _context.VenteProduits.Where(e => (e.DateOperation >= DtDebut && e.DateOperation <= DtFin)).Sum(e => Convert.ToDouble(e.Montant));
+            double SoldeTotal = _context.VenteProduits.Where(e => (e.DateOperation >= DtDebut.AddDays(-1) && e.DateOperation <= DtFin)).Sum(e => Convert.ToDouble(e.Montant));
             int I = 0;
             foreach (var item in Villes)
             {
@@ -130,14 +141,14 @@ namespace CyberSoftDataCenter.Controllers
                 data.Add(new ParVillesVm
                 {
                     Ville = item.Nom,
-                    Solde = _context.VenteProduits.Where(e => (e.DateOperation >= DtDebut && e.DateOperation <= DtFin) && e.CybersCenters.Villes.Nom == item.Nom).Sum(e => Convert.ToDouble(e.Montant)),
+                    Solde = _context.VenteProduits.Where(e => (e.DateOperation >= DtDebut.AddDays(-1) && e.DateOperation <= DtFin) && e.CybersCenters.Villes.Nom == item.Nom).Sum(e => Convert.ToDouble(e.Montant)),
                     Id = I,
-                    Taux = SoldeTotal == 0 ? 0 : Math.Round((_context.VenteProduits.Where(e => (e.DateOperation >= DtDebut && e.DateOperation <= DtFin) && e.CybersCenters.Villes.Nom == item.Nom).Sum(e => Convert.ToDouble(e.Montant)) / SoldeTotal) * 100, 2)
+                    Taux = SoldeTotal == 0 ? 0 : Math.Round((_context.VenteProduits.Where(e => (e.DateOperation >= DtDebut.AddDays(-1) && e.DateOperation <= DtFin) && e.CybersCenters.Villes.Nom == item.Nom).Sum(e => Convert.ToDouble(e.Montant)) / SoldeTotal) * 100, 2)
 
                 });
             }
-            ViewBag.DateDebut = DateDebut;
-            ViewBag.DateFin = DateFin;
+            ViewBag.DateDebut = DtDebut.ToString("dd/MM/yyyy");
+            ViewBag.DateFin = DtFin.ToString("dd/MM/yyyy");
             // var cdataCenterDbContext = _context.CybersCenters.Include(c => c.Villes);
             return View(data);
         }

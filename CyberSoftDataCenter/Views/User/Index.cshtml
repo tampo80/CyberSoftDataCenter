@@ -6,6 +6,7 @@
 }
 <script type="text/javascript">
     var url = '/User/DeleteUser';
+    var urlR = '/Account/Reinit';
 </script>
 
 
@@ -40,7 +41,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Email)
             </th>
-            <th width="60px">Action</th>
+            <th width="90px">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -64,7 +65,8 @@
                 <td>
                     <a asp-action="EditUser" asp-route-id="@item.Id"><span class="glyphicon glyphicon-edit text-info"></span></a> |
 @*     <a asp-action="Details" asp-route-id="@item.PaysID">Details</a> |*@
-                    <a class="delete-prompt" href="javascript:void(0)" id="@item.Id"><span class="glyphicon glyphicon-trash text-danger"> </span></a>
+                    <a class="delete-prompt" href="javascript:void(0)" id="@item.Id"><span class="glyphicon glyphicon-trash text-danger"> </span></a> |
+                    <a class="reset-prompt" href="javascript:void(0)" id="@item.Id"><span class="glyphicon glyphicon-lock text-success"> </span></a>
                 </td>
             </tr>
         }
@@ -87,6 +89,54 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-success delete-confirm">Suppimer</button>
+                <button class="btn btn-default" data-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of the boostrap modal popup -->       
+
+<!-- Bootstrap modal popup -->
+<div class="modal fade" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="resetModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header alert alert-info">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="resetModalLabel">Avertissement</h4>
+            </div>
+            <div class="modal-body">
+                <p class="success-message">R&eacute;initialiser le mot de passe  ? </p>
+                <form>
+                    <div class="form-horizontal">
+
+                        <hr />
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Nouveau mot de passe</label>
+                            <div class="col-md-6">
+                                <input type="password" class="form-control" id="password" name="password" />
+                                <span  class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label  class="col-md-4 control-label">Confirmation </label>
+                            <div class="col-md-6">
+                                <input type="password" class="form-control" id="cpassword" name="cpassword" />
+                                <span  class="text-danger"></span>
+                            </div>
+                        </div>
+                        <hr />
+
+                       <div id="erreurMessage" class="alert text-center"></div>
+                        </div>
+                    </form>
+                    </div>
+              
+            
+            <div class="modal-footer">
+                <button class="btn btn-success reset-confirm">R&eacute;initialiser</button>
                 <button class="btn btn-default" data-dismiss="modal">Fermer</button>
             </div>
         </div>
