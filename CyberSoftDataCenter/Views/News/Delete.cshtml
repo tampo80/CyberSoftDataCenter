@@ -1,0 +1,47 @@
+@model CyberSoftDataCenter.Models.News
+
+@{
+    ViewData["Title"] = "Effacer une news";
+}
+
+<h2>Effacer une news</h2>
+
+<h3>Voulez-vous vraiment effacer cette news?</h3>
+<div>
+    <h4>News</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="NewsId" />
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Auteur)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Auteur)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateNews)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateNews)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Message)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Message)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Effacer" class="btn btn-default" /> |
+            <a asp-action="Index">Retour à la liste</a>
+        </div>
+    </form>
+</div>
