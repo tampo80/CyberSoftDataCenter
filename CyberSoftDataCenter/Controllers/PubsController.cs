@@ -20,7 +20,7 @@ namespace CyberSoftDataCenter.Controllers
     {
         private readonly CdataCenterDbContext _context;
         private IHostingEnvironment _environment;
-        private String[] extens = { ".jpg", ".jpeg", ".png", ".gif" };
+        private String[] extens = { "jpg", "jpeg", "png", "gif" };
 
         public PubsController(CdataCenterDbContext context, IHostingEnvironment environment)
         {
