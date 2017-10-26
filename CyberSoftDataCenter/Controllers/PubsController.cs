@@ -20,6 +20,8 @@ namespace CyberSoftDataCenter.Controllers
     {
         private readonly CdataCenterDbContext _context;
         private IHostingEnvironment _environment;
+        private String[] extens = { ".jpg", ".jpeg", ".png", ".gif" };
+
         public PubsController(CdataCenterDbContext context, IHostingEnvironment environment)
         {
             _context = context;
@@ -104,10 +106,16 @@ namespace CyberSoftDataCenter.Controllers
                 {
                     if (file.Length > 0)
                     {
+
                         fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                        using (var fileStream = new FileStream(Path.Combine(uploads, fileName), FileMode.Create))
-                        {
-                            await file.CopyToAsync(fileStream);
+
+                        string currentExt = fileName.Split('.').Last();
+                        if(Array.Exists(extens, element => element == currentExt))
+                        { 
+                            using (var fileStream = new FileStream(Path.Combine(uploads, fileName), FileMode.Create))
+                            {
+                                await file.CopyToAsync(fileStream);
+                            }
                         }
                     }
                 }
@@ -162,9 +170,14 @@ namespace CyberSoftDataCenter.Controllers
                         if (file.Length > 0)
                         {
                             fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                            using (var fileStream = new FileStream(Path.Combine(uploads, fileName), FileMode.Create))
+
+                            string currentExt = fileName.Split('.').Last();
+                            if (Array.Exists(extens, element => element == currentExt))
                             {
-                                await file.CopyToAsync(fileStream);
+                                using (var fileStream = new FileStream(Path.Combine(uploads, fileName), FileMode.Create))
+                                {
+                                    await file.CopyToAsync(fileStream);
+                                }
                             }
                         }
                     }
